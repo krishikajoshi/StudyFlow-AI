@@ -6,6 +6,7 @@ const Groq = require("groq-sdk");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const HOST = "0.0.0.0";
 
 // CORS configuration
 const allowedOrigins = [
@@ -1890,6 +1891,6 @@ Respond with ONLY a valid, parseable JSON object matching this schema. No markdo
 // START BACKEND SERVER
 // ============================================
 
-app.listen(PORT, () => {
-  console.log(`StudyFlow AI backend running at http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`StudyFlow AI backend running at http://${HOST}:${PORT}`);
 });
