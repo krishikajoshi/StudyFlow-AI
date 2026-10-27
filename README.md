@@ -24,11 +24,12 @@
 ## 📑 Table of Contents
 
 - [Overview](#-overview)
+- [Project Demo](#-project-demo)
 - [Problem Statement](#-problem-statement)
 - [Key Features](#-key-features)
 - [System Architecture](#-system-architecture)
 - [Technologies Used](#-technologies-used)
-- [Screenshots](#-screenshots)
+- [Application Screenshots](#-application-screenshots)
 - [Prerequisites](#-prerequisites)
 - [Environment Variables](#-environment-variables)
 - [Local Installation & Setup](#-local-installation--setup)
@@ -45,6 +46,14 @@
 **StudyFlow AI** is designed to address the challenges modern students face when tackling dense academic material, preparing for examinations, and maintaining consistent study habits. By combining client-side PDF document parsing with high-speed LLM inference via the **Groq API**, StudyFlow AI transforms passive lecture notes into an interactive, multi-dimensional learning environment.
 
 Students can upload their lecture slides and textbook chapters, automatically extract foundational concepts, test their recall through generated practice quizzes, receive semantic AI evaluations on written answers, and follow structured, day-by-day study schedules personalized to their strengths and weaknesses.
+
+---
+
+## 🎥 Project Demo
+
+Experience **StudyFlow AI** in action. Watch our full platform walkthrough showcasing in-browser PDF note intelligence, automated study plan generation, real-time grounded AI tutoring, and timed mock examination simulations:
+
+📺 **[Watch StudyFlow AI Demo](https://drive.google.com/file/d/1AIKQniBQTYQSDsn6UbJ1nkCxGhnSxUzR/view?usp=drivesdk)** *(Hosted on Google Drive)*
 
 ---
 
