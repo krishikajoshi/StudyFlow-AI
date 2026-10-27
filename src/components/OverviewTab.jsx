@@ -102,7 +102,7 @@ export default function OverviewTab({
             <span className="live-dot" /> {todayFormatted.toUpperCase()}
           </div>
           <h1>
-            {greeting}, <span>Krishika.</span>
+            {greeting}<span>.</span>
           </h1>
           <p className="welcome-subtitle">
             Every step forward builds confidence. Track your active study materials and pick up right where you left off.
