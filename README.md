@@ -16,7 +16,7 @@
 
 ## 📌 Live Deployment & Repository
 
-- **Live Application**: [https://studyflow-frontenddd.onrender.com](https://studyflow-frontenddd.onrender.com/)
+- **Live Application**: [https://studyflow-frontendd.onrender.com](https://studyflow-frontendd.onrender.com/)
 - **GitHub Repository**: [https://github.com/krishikajoshi/StudyFlow-AI](https://github.com/krishikajoshi/StudyFlow-AI)
 
 ---
