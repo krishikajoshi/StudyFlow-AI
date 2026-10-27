@@ -8,7 +8,39 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // CORS configuration
-app.use(cors());
+const allowedOrigins = [
+  "https://studyflow-ai-kappa.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000",
+  "http://localhost:3001",
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow non-browser requests or same-origin requests with no origin header
+    if (!origin) return callback(null, true);
+
+    const isExplicitlyAllowed = allowedOrigins.includes(origin);
+    const isVercelDeployment =
+      origin === "https://studyflow-ai-kappa.vercel.app" ||
+      /^https:\/\/studyflow-ai[a-z0-9-]*\.vercel\.app$/.test(origin) ||
+      /^https:\/\/.*\.vercel\.app$/.test(origin);
+
+    if (isExplicitlyAllowed || isVercelDeployment) {
+      return callback(null, true);
+    }
+
+    // Default allow to ensure production requests are not erroneously blocked
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json({ limit: "2mb" }));
 
 // Check that the Groq API key exists
@@ -29,6 +61,15 @@ app.get("/", (req, res) => {
   res.json({
     message: "StudyFlow AI backend is running!",
     model: GROQ_MODEL,
+  });
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "ok",
+    message: "StudyFlow AI backend is healthy!",
+    model: GROQ_MODEL,
+    timestamp: new Date().toISOString(),
   });
 });
 

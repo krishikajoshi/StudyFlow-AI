@@ -12,6 +12,7 @@ import WorkspaceModal from "./components/WorkspaceModal";
 import MockTestsTab from "./components/MockTestsTab";
 import StudyPlannerTab from "./components/StudyPlannerTab";
 import { getSavedNotes, logStudySession } from "./utils/storage";
+import { apiFetch, getApiErrorMessage } from "./utils/api";
 
 function App() {
   const DEFAULT_TUTOR_MESSAGES = [
@@ -120,7 +121,6 @@ function App() {
           text: m.text.slice(0, 300),
         }));
 
-      const endpoint = "/api/ai";
       const payload = {
         task: "ask",
         text: document?.text || "",
@@ -128,16 +128,10 @@ function App() {
         history: recentHistory,
       };
 
-      const response = await fetch(endpoint, {
+      const response = await apiFetch("/api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-      }).catch(async () => {
-        return await fetch("http://localhost:3001/api/ai", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
       });
 
       const data = await response.json().catch(() => ({}));
@@ -175,11 +169,7 @@ function App() {
         title: `AI Tutor Question: ${trimmedQuestion.slice(0, 45)}...`,
       });
     } catch (err) {
-      const isNetworkError =
-        err instanceof TypeError && err.message?.toLowerCase().includes("fetch");
-      const friendlyMessage = isNetworkError
-        ? "Unable to connect to the backend server. Please verify http://localhost:3001 is active."
-        : err.message || "Something went wrong while generating the answer.";
+      const friendlyMessage = getApiErrorMessage(err);
 
       setTutorError(friendlyMessage);
       const updatedWithError = [

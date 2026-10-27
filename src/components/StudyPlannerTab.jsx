@@ -14,6 +14,7 @@ import {
   getSavedNotes,
   getGoals,
 } from "../utils/storage";
+import { apiFetch, getApiErrorMessage } from "../utils/api";
 
 export default function StudyPlannerTab({
   setActivePage,
@@ -193,17 +194,10 @@ export default function StudyPlannerTab({
     };
 
     try {
-      const endpoint = "/api/study-planner/generate";
-      let response = await fetch(endpoint, {
+      const response = await apiFetch("/api/study-planner/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-      }).catch(async () => {
-        return await fetch("http://localhost:3001/api/study-planner/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
       });
 
       const data = await response.json().catch(() => ({}));
@@ -232,7 +226,7 @@ export default function StudyPlannerTab({
       setTopicInput("");
     } catch (err) {
       console.error("Study plan generation failed:", err);
-      setGenerationError(err.message || "Failed to generate plan. Please try again.");
+      setGenerationError(getApiErrorMessage(err));
     } finally {
       setIsGenerating(false);
     }

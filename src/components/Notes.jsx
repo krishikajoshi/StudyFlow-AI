@@ -11,6 +11,7 @@ import {
   getCourses,
   saveFlashcardDeck,
 } from "../utils/storage";
+import { apiFetch, getApiErrorMessage } from "../utils/api";
 
 const AI_TASKS = [
   {
@@ -317,7 +318,6 @@ export default function Notes({
     const effectiveCount = countOverride || (task === "mcqs" ? mcqCount : undefined);
 
     try {
-      const endpoint = "/api/ai";
       const payload = {
         task,
         text: document.text,
@@ -325,20 +325,12 @@ export default function Notes({
         count: effectiveCount,
       };
 
-      const response = await fetch(endpoint, {
+      const response = await apiFetch("/api/ai", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
-      }).catch(async () => {
-        return await fetch("http://localhost:3001/api/ai", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
       });
 
       const data = await response.json().catch(() => ({}));
@@ -375,11 +367,7 @@ export default function Notes({
         refreshLibrary();
       }
     } catch (err) {
-      setAiError(
-        err instanceof Error
-          ? err.message
-          : "Unable to connect to the AI server."
-      );
+      setAiError(getApiErrorMessage(err));
     } finally {
       setAiTask("");
     }
@@ -410,20 +398,14 @@ export default function Notes({
     setAiError("");
 
     try {
-      const response = await fetch("/api/ai", {
+      const response = await apiFetch("/api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           task: "flashcards",
           text: document.text,
         }),
-      }).catch(() =>
-        fetch("http://localhost:3001/api/ai", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ task: "flashcards", text: document.text }),
-        })
-      );
+      });
 
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Failed to generate flashcards.");
@@ -440,7 +422,7 @@ export default function Notes({
         setTimeout(() => setFlashcardsSaved(false), 3000);
       }
     } catch (err) {
-      setAiError(err instanceof Error ? err.message : "Flashcard generation failed.");
+      setAiError(getApiErrorMessage(err));
     } finally {
       setAiTask("");
     }

@@ -16,6 +16,7 @@ import {
   analyzeSingleMockTestAttempt,
   extractAssessmentWeaknesses,
 } from "../utils/storage";
+import { apiFetch, getApiErrorMessage } from "../utils/api";
 
 export default function MockTestsTab({
   setActivePage,
@@ -229,16 +230,10 @@ export default function MockTestsTab({
         customMarks: config.useDefaultMarks ? { mcq: 2, short: 4, long: 8 } : config.customMarks,
       };
 
-      const response = await fetch("/api/mock-test/generate", {
+      const response = await apiFetch("/api/mock-test/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-      }).catch(async () => {
-        return await fetch("http://localhost:3001/api/mock-test/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
       });
 
       const data = await response.json().catch(() => ({}));
@@ -272,7 +267,7 @@ export default function MockTestsTab({
       setCurrentTest(saved);
       setView("preview");
     } catch (err) {
-      setGenerationError(err.message || "An error occurred while generating the mock test.");
+      setGenerationError(getApiErrorMessage(err));
     } finally {
       setIsGenerating(false);
     }
@@ -468,22 +463,13 @@ export default function MockTestsTab({
 
     if (writtenAnswersPayload.length > 0) {
       try {
-        const response = await fetch("/api/mock-test/evaluate", {
+        const response = await apiFetch("/api/mock-test/evaluate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             testId: currentTest.id,
             writtenAnswers: writtenAnswersPayload,
           }),
-        }).catch(async () => {
-          return await fetch("http://localhost:3001/api/mock-test/evaluate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              testId: currentTest.id,
-              writtenAnswers: writtenAnswersPayload,
-            }),
-          });
         });
 
         const data = await response.json().catch(() => ({}));
@@ -505,7 +491,7 @@ export default function MockTestsTab({
       } catch (err) {
         console.warn("AI written evaluation failed:", err);
         evaluationStatus = "pending";
-        evalErrorMsg = err.message || "AI evaluation pending";
+        evalErrorMsg = getApiErrorMessage(err);
 
         // Mark written questions as pending evaluation
         writtenQuestions.forEach((q) => {
@@ -580,22 +566,13 @@ export default function MockTestsTab({
     }));
 
     try {
-      const response = await fetch("/api/mock-test/evaluate", {
+      const response = await apiFetch("/api/mock-test/evaluate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           testId: currentTest.id,
           writtenAnswers: writtenAnswersPayload,
         }),
-      }).catch(async () => {
-        return await fetch("http://localhost:3001/api/mock-test/evaluate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            testId: currentTest.id,
-            writtenAnswers: writtenAnswersPayload,
-          }),
-        });
       });
 
       const data = await response.json().catch(() => ({}));
@@ -632,7 +609,7 @@ export default function MockTestsTab({
       setCurrentAttempt(updated);
       refreshData();
     } catch (err) {
-      setEvaluationError(err.message || "Failed to complete evaluation retry.");
+      setEvaluationError(getApiErrorMessage(err));
     } finally {
       setIsEvaluating(false);
     }
