@@ -165,21 +165,66 @@ graph TD
 
 ---
 
-## 📸 Screenshots
+## 📸 Application Screenshots
 
-> *Note: Replace the placeholder links below with actual application screenshots.*
+Explore the key features and user interface of StudyFlow AI across all core modules:
 
-| Dashboard Overview | PDF Note Studio & AI Summary |
+### 1. Workspace & Curriculum Management
+| Overview Dashboard | Curriculum & Course Manager |
 | :---: | :---: |
-| ![Dashboard Overview Placeholder](https://via.placeholder.com/600x350/1e1e2f/ffffff?text=Dashboard+Overview+%26+Analytics) | ![Note Studio Placeholder](https://via.placeholder.com/600x350/1e1e2f/ffffff?text=PDF+Note+Studio+%26+AI+Summary) |
+| ![Overview Dashboard](screenshots/screenshot-1.png) | ![Curriculum & Course Manager](screenshots/screenshot-2.png) |
+| *Real-time metrics, active study schedule, and quick-launch action cards* | *Course catalog, subject tags, progress tracking, and module organization* |
 
-| AI Tutor Interactive Chat | Diagnostic Mock Test Simulator |
-| :---: | :---: |
-| ![AI Tutor Placeholder](https://via.placeholder.com/600x350/1e1e2f/ffffff?text=AI+Study+Tutor+Chat) | ![Mock Test Simulator Placeholder](https://via.placeholder.com/600x350/1e1e2f/ffffff?text=Mock+Test+Simulator+%26+Evaluator) |
+| Course Creation Studio |
+| :---: |
+| ![Course Creation Studio](screenshots/screenshot-3.png) |
+| *Modal interface for establishing courses with syllabus topics and difficulty ratings* |
 
-| Automated Study Planner | Interactive Flashcards Player |
+### 2. AI Study Planner & Automated Scheduling
+| AI Study Plan Generator | Curriculum Schedule & Milestones |
 | :---: | :---: |
-| ![Study Planner Placeholder](https://via.placeholder.com/600x350/1e1e2f/ffffff?text=Automated+Study+Planner) | ![Flashcards Player Placeholder](https://via.placeholder.com/600x350/1e1e2f/ffffff?text=Interactive+Flashcards+Player) |
+| ![AI Study Plan Generator](screenshots/screenshot-4.png) | ![Curriculum Schedule & Milestones](screenshots/screenshot-5.png) |
+| *AI wizard configuring exam dates, daily study commitment, and custom target topics* | *Daily task breakdown with priority badges, time estimates, and completion toggles* |
+
+### 3. Diagnostic Mock Examinations
+| Mock Exam Configuration | Live Exam Simulator |
+| :---: | :---: |
+| ![Mock Exam Configuration](screenshots/screenshot-6.png) | ![Live Exam Simulator](screenshots/screenshot-7.png) |
+| *Customizable exam generator with question count, difficulty levels, and timer settings* | *Real-time timed assessment with interactive question palette and instant response capture* |
+
+### 4. Interactive AI Tutor
+| AI Pedagogical Tutor |
+| :---: |
+| ![Interactive AI Tutor](screenshots/screenshot-8.png) |
+| *Context-aware chat assistant providing step-by-step explanations, code examples, and study guidance* |
+
+### 5. Document Studio, AI Summaries & Quizzes
+| PDF Ingestion & Extraction | AI Conceptual Summary |
+| :---: | :---: |
+| ![PDF Ingestion & Extraction](screenshots/screenshot-9.png) | ![AI Conceptual Summary](screenshots/screenshot-10.png) |
+| *Client-side PDF text extraction and document inspection workspace* | *Structured study summaries synthesizing key definitions, concepts, and code blocks* |
+
+| Generated Practice Quiz |
+| :---: |
+| ![Generated Practice Quiz](screenshots/screenshot-11.png) |
+| *Contextual AI-generated quizzes featuring instant grading, explanation cards, and answer review* |
+
+### 6. Active Recall & Revision Hub
+| Spaced Repetition Flashcards | Saved Summaries & Document Vault |
+| :---: | :---: |
+| ![Spaced Repetition Flashcards](screenshots/screenshot-12.png) | ![Saved Summaries & Document Vault](screenshots/screenshot-13.png) |
+| *Interactive flashcard player with question reveal and active recall self-assessment* | *Centralized repository indexing all generated notes, summaries, and source documents* |
+
+| Pomodoro Focus Sprint Timer |
+| :---: |
+| ![Pomodoro Focus Sprint Timer](screenshots/screenshot-14.png) |
+| *Configurable focus sprint timer (5 min, 15 min, 25 min) directly connected to learning analytics* |
+
+### 7. Learning Analytics & Goals Tracking
+| Learning Analytics Dashboard | Goals & Milestone Tracker |
+| :---: | :---: |
+| ![Learning Analytics Dashboard](screenshots/screenshot-15.png) | ![Goals & Milestone Tracker](screenshots/screenshot-16.png) |
+| *Comprehensive study metrics, accuracy trends, session logs, and weekly study rhythm charts* | *Target tracking dashboard with quiz milestones, deadlines, and progress bars* |
 
 ---
 
