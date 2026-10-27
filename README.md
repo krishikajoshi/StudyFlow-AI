@@ -342,5 +342,5 @@ All backend endpoints are prefixed with `/api` and accept/return `application/js
 This project is licensed under the **ISC License**.
 
 - **Author**: Krishika Joshi ([@krishikajoshi](https://github.com/krishikajoshi))
-- **Live Demo**: [https://studyflow-frontenddd.onrender.com](https://studyflow-frontenddd.onrender.com/)
+- **Live Demo**: [https://studyflow-frontendd.onrender.com](https://studyflow-frontendd.onrender.com/)
 - **Repository**: [https://github.com/krishikajoshi/StudyFlow-AI](https://github.com/krishikajoshi/StudyFlow-AI)
